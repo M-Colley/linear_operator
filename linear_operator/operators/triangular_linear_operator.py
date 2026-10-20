@@ -64,6 +64,11 @@ class TriangularLinearOperator(LinearOperator, _TriangularLinearOperatorBase):
             return self.__class__(self._tensor + other._tensor, upper=self.upper)
         return self._tensor + other
 
+    def _bilinear_derivative(self, left_vecs: Tensor, right_vecs: Tensor) -> tuple[Tensor | None, ...]:
+        # The triangular wrapper does not change the representation. Preserve
+        # the wrapped operator's analytic derivative and its autograd graph.
+        return self._tensor._bilinear_derivative(left_vecs, right_vecs)
+
     def _cholesky(
         self: LinearOperator, upper: bool | None = False  # shape: (*batch, N, N)
     ) -> LinearOperator:  # shape: (*batch, N, N)
