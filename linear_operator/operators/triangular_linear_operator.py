@@ -9,7 +9,6 @@ from torch import Tensor
 from linear_operator.operators._linear_operator import IndexType, LinearOperator
 from linear_operator.operators.batch_repeat_linear_operator import BatchRepeatLinearOperator
 from linear_operator.operators.dense_linear_operator import DenseLinearOperator
-
 from linear_operator.utils.errors import NotPSDError
 from linear_operator.utils.memoize import cached
 
